@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="az">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quantum Video — Premium Gizli Platforma (Tam Versiya)</title>
+    <style>
+        :root {
+            --bg-1: #0b1020;
+            --card: rgba(255, 255, 255, 0.04);
+            --glass: rgba(255, 255, 255, 0.03);
+            --accent1: #6ee7ff;
+            --accent2: #8b5cf6;
+            --accent3: #e879f9;
+            --muted: rgba(255, 255, 255, 0.62);
+            --radius: 14px;
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+            background:
+                radial-gradient(1200px 600px at 10% 10%, rgba(110, 231, 255, 0.03), transparent),
+                radial-gradient(1000px 500px at 90% 90%, rgba(232, 121, 249, 0.02), transparent),
+                var(--bg-1);
+            color: #fff;
+            -webkit-font-smoothing: antialiased
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 28px auto;
+            padding: 24px;
+            border-radius: 18px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            box-shadow: 0 8px 40px rgba(2, 6, 23, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(8px) saturate(120%)
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--accent3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #021;
+            font-size: 18px;
+            transform: rotate(-8deg)
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0
+        }
+
+        p.lead {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .btn {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: var(--muted);
+            font-weight: 600;
+            transition: all .18s ease
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, rgba(138, 92, 246, 0.18), rgba(110, 231, 255, 0.08));
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 6px 18px rgba(139, 92, 246, 0.08)
+        }
+
+        .btn:hover {
+            transform: translateY(-3px)
+        }
+
+        .page {
+            display: none;
+            padding: 20px 0;
+            animation: fade .35s ease both
+        }
+
+        .page.active {
+            display: block
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .center {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto
+        }
+
+        input.input,
+        textarea.input,
+        select.input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            color: #fff;
+            outline: none;
+            font-size: 14px;
+            margin-top: 10px
+        }
+
+        label {
+            font-size: 13px;
+            color: var(--muted);
+            display: block;
+            margin-top: 12px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 18px
+        }
+
+        @media(max-width:980px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:640px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: var(--radius);
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6)
+        }
+
+        .video-thumb {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #050507;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 160px
+        }
+
+        .video-thumb video,
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 10px
+        }
+
+        .meta .title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff
+        }
+
+        .meta .small {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .admin-area {
+            display: flex;
+            gap: 12px;
+            flex-direction: column
+        }
+
+        .danger {
+            background: linear-gradient(90deg, #ff7a7a33, #ff4d4d22);
+            color: #fff;
+            border: 1px solid rgba(255, 80, 80, 0.12)
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(2, 6, 23, 0.6), rgba(2, 6, 23, 0.85));
+            z-index: 9999;
+            padding: 20px;
+            backdrop-filter: blur(6px);
+            visibility: hidden;
+            opacity: 0;
+            transition: all .18s
+        }
+
+        .modal.show {
+            visibility: visible;
+            opacity: 1
+        }
+
+        .modal .box {
+            max-width: 920px;
+            width: 100%;
+            padding: 18px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: center
+        }
+
+        .count {
+            font-size: 40px;
+            margin: 8px 0;
+            font-weight: 700;
+            color: var(--accent1)
+        }
+
+        footer {
+            margin-top: 20px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        #inspectShield {
+            display: none;
+            position: fixed;
+            right: 14px;
+            bottom: 14px;
+            background: #111;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--muted);
+            border: 1px solid rgba(255, 255, 255, 0.03)
+        }
+
+        .player-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 8px
+        }
+
+        .small-note {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 8px
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--muted);
+            margin-right: 6px
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .center-v {
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap" role="main" aria-live="polite">
+        <header>
+            <div class="brand">
+                <div class="logo">Q</div>
+                <div>
+                    <h1>Quantum Video</h1>
+                    <p class="lead">Premium, gizli və sürətli — videolarınız üçün müasir platforma</p>
+                </div>
+            </div>
+            <div class="nav" role="navigation" aria-label="Main nav">
+                <button class="btn" id="btnHome">Ana</button>
+                <button class="btn" id="btnVideos">Videolar</button>
+                <button class="btn" id="btnLogin">Giriş</button>
+                <button class="btn primary" id="btnAdmin">Admin</button>
+            </div>
+        </header>
+
+        <!-- HOME -->
+        <section id="homePage" class="page active center" role="region">
+            <h2>Quantum Video — Gizlilik ön planda</h2>
+            <p class="muted">Hesab yaradın və videoları yüksək keyfiyyətdə izləyin. Məlumatlar brauzerinizdə
+                şifrələnərək saxlanılır.</p>
+            <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                <button class="btn primary" onclick="showPage('videosPage')">Videolara bax</button>
+                <button class="btn" onclick="showPage('loginPage')">Hesab aç / Giriş</button>
+            </div>
+            <div style="margin-top:18px;">
+                <span class="tag">Client-side AES-GCM</span>
+                <span class="tag">PBKDF2</span>
+                <span class="tag">Demo only</span>
+            </div>
+        </section>
+
+        <!-- LOGIN -->
+        <section id="loginPage" class="page center" aria-hidden="true" style="max-width:520px;">
+            <h2>Hesab Girişi</h2>
+            <p class="muted">Gizlilik üçün şifrənizdən yaradılan anahtar məlumatlarınızı şifrələməkdə istifadə olunur.
+            </p>
+            <label for="inputEmail">Email</label>
+            <input id="inputEmail" class="input" placeholder="email@misal.com" autocomplete="username">
+            <label for="inputPass">Şifrə</label>
+            <input id="inputPass" type="password" class="input" placeholder="Güclü şifrə"
+                autocomplete="current-password">
+            <div style="display:flex; gap:8px; margin-top:12px;">
+                <button class="btn primary" onclick="login()">Giriş et</button>
+                <button class="btn" onclick="showPage('registerPage')">Qeydiyyat</button>
+            </div>
+            <p class="muted" style="margin-top:12px;">Demo layihə — həqiqi istifadə üçün server tərəf təhlükəsizliyi
+                tövsiyə olunur.</p>
+        </section>
+
+        <!-- REGISTER -->
+        <section id="registerPage" class="page center" style="max-width:520px;">
+            <h2>Yeni Hesab</h2>
+            <label>Email</label>
+            <input id="regEmail" class="input" placeholder="email@misal.com" autocomplete="email">
+            <label>Şifrə</label>
+            <input id="regPass" type="password" class="input" placeholder="Güclü şifrə" autocomplete="new-password">
+            <label>Gizli Ad (profil üçün - ixtiyari)</label>
+            <input id="regName" class="input" placeholder="İstifadəçi adı">
+            <div style="display:flex; gap:8px; margin-top:12px;">
+                <button class="btn primary" onclick="register()">Qeydiyyatdan keç</button>
+                <button class="btn" onclick="showPage('loginPage')">Geri</button>
+            </div>
+            <p class="muted" style="margin-top:12px;">Qeyd: istifadəçi məlumatları brauzerdə AES-GCM ilə şifrələnir
+                (demo).</p>
+        </section>
+
+        <!-- VIDEOS -->
+        <section id="videosPage" class="page" role="region" aria-live="polite">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                <div>
+                    <h3 style="margin:0;">Videolar</h3>
+                    <p class="muted" style="margin:6px 0 0 0;">Sənə uyğun videolar burada.</p>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <span id="userBadge" class="muted"></span>
+                    <button class="btn" id="btnLogout" onclick="logout()" style="display:none;">Çıxış</button>
+                </div>
+            </div>
+            <div id="videoGrid" class="grid" aria-live="polite" style="margin-top:18px;"></div>
+            <div style="margin-top:18px;">
+                <p class="muted">Qeyd: videonun tam versiyasını izləmək üçün istifadəçi olmalısınız.</p>
+            </div>
+        </section>
+
+        <!-- ADMIN -->
+        <section id="adminPage" class="page" style="max-width:920px;">
+            <h3>Admin Panel</h3>
+            <p class="muted">Admin sahəsi — təhlükəsizlik üçün brauzer-də yerləşən açar ilə qorunur (demo).</p>
+
+            <div class="card" style="margin-top:12px;">
+                <label>Admin Kodu</label>
+                <input id="adminCode" class="input" placeholder="Admin kodu">
+                <label>Admin Şifrə</label>
+                <input id="adminPass" type="password" class="input" placeholder="Admin şifrəsi">
+                <div style="display:flex; gap:8px; margin-top:10px;">
+                    <button class="btn primary" onclick="adminLogin()">Daxil ol</button>
+                    <button class="btn" onclick="setupDefaultAdmin()">Default admin təyin et</button>
+                </div>
+            </div>
+
+            <div id="adminArea" class="admin-area" style="display:none; margin-top:12px;">
+                <div class="card">
+                    <h4>Video əlavə et (URL ilə)</h4>
+                    <label>Video URL (mp4, m3u8 və s.)</label>
+                    <input id="videoUrl" class="input" placeholder="https://...yourvideo.mp4">
+                    <label>Başlıq</label>
+                    <input id="videoTitle" class="input" placeholder="Video başlığı">
+                    <label>Thumbnail URL (opsional)</label>
+                    <input id="videoThumb" class="input" placeholder="https://...thumb.jpg (opsional)">
+                    <div style="display:flex; gap:8px; margin-top:10px;">
+                        <button class="btn primary" onclick="adminAddVideo()">Əlavə et</button>
+                        <button class="btn danger" onclick="exportData()">Şifrəli ehtiyat çıxar</button>
+                        <button class="btn" onclick="importPrompt()">Şifrəli ehtiyat yüklə</button>
+                    </div>
+                    <p class="small-note">Server tərəfi olmayan demo: video URL-ləri yalnız göstərilir, fayl hostunuzdan
+                        gəlməlidir.</p>
+                </div>
+
+                <div class="card" id="adminListCard">
+                    <h4>Videolar (admin)</h4>
+                    <div id="adminList" style="margin-top:10px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p class="muted">Quantum Video • Tam Demo • Gizlilik ön planda — <span class="muted">İstehsal üçün
+                    server-side auth tələb olunur</span></p>
+        </footer>
+    </div>
+
+    <!-- AGE / CONTENT WARNING -->
+    <div id="ageModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="box">
+            <h3>⚠ 18+ Xəbərdarlıq</h3>
+            <p class="muted">Bu platformada yetkin məzmun ola bilər. Davam etmək istəyirsiniz?</p>
+            <div style="display:flex; gap:8px; justify-content:center; margin-top:14px;">
+                <button class="btn" onclick="closeAgeModal(false)">Geri</button>
+                <button class="btn primary" onclick="closeAgeModal(true)">Davam et</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN PLAYER MODAL -->
+    <div id="playerModal" class="modal" aria-hidden="true">
+        <div class="box" style="padding:12px;">
+            <div id="playerWrap" style="position:relative;">
+                <video id="playerVideo" controls playsinline
+                    style="width:100%;max-height:70vh;background:#000;"></video>
+            </div>
+            <div class="player-controls">
+                <button class="btn" onclick="playerTogglePlay()">Play/Pause</button>
+                <button class="btn" onclick="playerSeek(-10)">-10s</button>
+                <button class="btn" onclick="playerSeek(10)">+10s</button>
+                <button class="btn" onclick="closePlayer()">Bağla</button>
+            </div>
+            <div class="small-note muted" style="margin-top:8px;">Tam ekran üçün video oynatıcıda fullscreen düyməsini
+                istifadə et.</div>
+        </div>
+    </div>
+
+    <div id="inspectShield">Inspect detected — gizlilik modu</div>
+
+    <script>
+        /* ---------------------------
+           Konfiqurasiya & saxlanma
+           (Demo: APP_SECRET brauzerdədir; prod üçün serverdə saxla)
+           --------------------------- */
+        const APP_SECRET = 'ChangeThisMasterSecret_Quantum2025_v2'; // DEMO only
+        const STORAGE_USERS = 'qv_users_enc_v2';
+        const STORAGE_VIDEOS = 'qv_videos_enc_v2';
+        const SESSION_KEY = 'qv_session_v2';
+        const ADMIN_HASH = 'qv_admin_hash_v2';
+
+        /* --------------------------- Crypto helpers --------------------------- */
+        const enc = new TextEncoder();
+        const dec = new TextDecoder();
+
+        async function deriveKey(secret, saltText = 'qv_salt_v2', iterations = 150000, length = 256) {
+            const salt = enc.encode(saltText);
+            const base = await crypto.subtle.importKey('raw', enc.encode(secret), 'PBKDF2', false, ['deriveKey']);
+            return crypto.subtle.deriveKey(
+                { name: 'PBKDF2', salt, iterations, hash: 'SHA-256' },
+                base,
+                { name: 'AES-GCM', length },
+                false,
+                ['encrypt', 'decrypt']
+            );
+        }
+
+        async function aesEncrypt(plain, secret) {
+            const iv = crypto.getRandomValues(new Uint8Array(12));
+            const key = await deriveKey(secret, 'qv-storage-salt', 150000);
+            const ciphertext = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(plain));
+            const combined = new Uint8Array(iv.byteLength + ciphertext.byteLength);
+            combined.set(iv, 0);
+            combined.set(new Uint8Array(ciphertext), iv.byteLength);
+            return btoa(String.fromCharCode(...combined));
+        }
+
+        async function aesDecrypt(b64, secret) {
+            try {
+                const data = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+                const iv = data.slice(0, 12);
+                const ct = data.slice(12);
+                const key = await deriveKey(secret, 'qv-storage-salt', 150000);
+                const plainBuf = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
+                return dec.decode(plainBuf);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        async function sha256Hex(text) {
+            const hash = await crypto.subtle.digest('SHA-256', enc.encode(text));
+            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        /* --------------------------- Encrypted storage API --------------------------- */
+        async function saveEncrypted(keyName, obj) {
+            const json = JSON.stringify(obj);
+            const cipher = await aesEncrypt(json, APP_SECRET);
+            localStorage.setItem(keyName, cipher);
+        }
+        async function loadEncrypted(keyName) {
+            const cipher = localStorage.getItem(keyName);
+            if (!cipher) return null;
+            const plain = await aesDecrypt(cipher, APP_SECRET);
+            if (!plain) return null;
+            try { return JSON.parse(plain); } catch (e) { return null; }
+        }
+
+        /* --------------------------- Init storage (if empty) --------------------------- */
+        (async function initStorage() {
+            if (!localStorage.getItem(STORAGE_USERS)) await saveEncrypted(STORAGE_USERS, []);
+            if (!localStorage.getItem(STORAGE_VIDEOS)) await saveEncrypted(STORAGE_VIDEOS, []);
+        })();
+
+        /* --------------------------- UI helpers --------------------------- */
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const el = document.getElementById(id);
+            if (el) el.classList.add('active');
+            if (id === 'videosPage') renderVideos();
+        }
+
+        function escapeHtml(s) {
+            return (s + '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        /* --------------------------- Session & Auth --------------------------- */
+        async function currentUser() {
+            const s = sessionStorage.getItem(SESSION_KEY);
+            if (!s) return null;
+            try { return JSON.parse(s); } catch (e) { return null; }
+        }
+
+        async function setSession(user) {
+            sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
+            document.getElementById('btnLogout').style.display = 'inline-block';
+            document.getElementById('userBadge').innerText = user?.name ? user.name : user.email;
+        }
+
+        function logout() {
+            sessionStorage.removeItem(SESSION_KEY);
+            document.getElementById('btnLogout').style.display = 'none';
+            document.getElementById('userBadge').innerText = '';
+            alert('Hesabdan çıxış edildi');
+            showPage('homePage');
+        }
+
+        /* --------------------------- Register & Login --------------------------- */
+        async function register() {
+            const email = document.getElementById('regEmail').value.trim();
+            const pass = document.getElementById('regPass').value || '';
+            const name = document.getElementById('regName').value.trim() || email.split('@')[0] || 'user';
+
+            if (!email || !pass) { alert('Email və şifrə daxil edin'); return; }
+            if (!email.includes('@')) { alert('Düzgün email daxil edin'); return; }
+            if (pass.length < 6) { alert('Şifrə ən az 6 simvol olmalıdır'); return; }
+
+            const users = await loadEncrypted(STORAGE_USERS) || [];
+            if (users.find(u => u.email === email)) { alert('Bu email artıq qeydiyyatlıdır'); return; }
+
+            const passHash = await sha256Hex(pass + '::' + email); // client-side hash
+            users.push({ email, passHash, name, created: Date.now() });
+            await saveEncrypted(STORAGE_USERS, users);
+
+            alert('Qeydiyyat uğurludur. İndi giriş edə bilərsiniz.');
+            showPage('loginPage');
+        }
+
+        async function login() {
+            const email = document.getElementById('inputEmail').value.trim();
+            const pass = document.getElementById('inputPass').value || '';
+            if (!email || !pass) { alert('Email və şifrə daxil edin'); return; }
+
+            const users = await loadEncrypted(STORAGE_USERS) || [];
+            const passHash = await sha256Hex(pass + '::' + email);
+            const user = users.find(u => u.email === email && u.passHash === passHash);
+            if (!user) { alert('Email və ya şifrə yanlışdır'); return; }
+
+            await setSession({ email: user.email, name: user.name });
+            // yaş xəbərdarlığını göstər
+            showAgeModal();
+        }
+
+        /* --------------------------- Age Modal --------------------------- */
+        function showAgeModal() {
+            const m = document.getElementById('ageModal');
+            m.classList.add('show');
+            m.setAttribute('aria-hidden', 'false');
+        }
+        function closeAgeModal(ok) {
+            const m = document.getElementById('ageModal');
+            m.classList.remove('show');
+            m.setAttribute('aria-hidden', 'true');
+            if (ok) showPage('videosPage'); else showPage('homePage');
+        }
+
+        /* --------------------------- Video rendering --------------------------- */
+        async function renderVideos() {
+            const grid = document.getElementById('videoGrid');
+            grid.innerHTML = '';
+            const videos = await loadEncrypted(STORAGE_VIDEOS) || [];
+            const user = await currentUser();
+
+            if (videos.length === 0) {
+                grid.innerHTML = '<div class="card center"><p class="muted">Heç bir video əlavə olunmayıb.</p></div>';
+                return;
+            }
+
+            videos.forEach((v, i) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                const thumbHtml = v.thumb ? `<div class="video-thumb"><img src="${escapeHtml(v.thumb)}" alt="${escapeHtml(v.title)}"></div>` :
+                    `<div class="video-thumb"><video src="${encodeURI(v.url)}" preload="metadata" playsinline muted></video></div>`;
+                card.innerHTML = `
+          ${thumbHtml}
+          <div class="meta">
+            <div>
+              <div class="title">${escapeHtml(v.title || 'Untitled')}</div>
+              <div class="small muted">Keyfiyyət: ${escapeHtml(v.quality || 'Auto')} • ID: ${i + 1}</div>
+            </div>
+            <div>
+              ${user ? `<button class="btn" onclick="openPlayer(${i})">Tam izləyin</button>` : `<button class="btn" onclick="promptLogin()">Giriş üçün</button>`}
+            </div>
+          </div>
+        `;
+                grid.appendChild(card);
+            });
+        }
+
+        function promptLogin() { alert('Tam versiyanı izləmək üçün hesabınızla daxil olun.'); showPage('loginPage'); }
+
+        /* --------------------------- Full player controls (modal) --------------------------- */
+        let currentPlayingIndex = null;
+        async function openPlayer(i) {
+            const videos = await loadEncrypted(STORAGE_VIDEOS) || [];
+            const v = videos[i];
+            if (!v) return;
+            currentPlayingIndex = i;
+            const pm = document.getElementById('playerModal');
+            const playerVid = document.getElementById('playerVideo');
+            playerVid.src = v.url;
+            playerVid.currentTime = 0;
+            pm.classList.add('show');
+            pm.setAttribute('aria-hidden', 'false');
+            playerVid.play().catch(() => { });
+        }
+        function closePlayer() {
+            const pm = document.getElementById('playerModal');
+            const playerVid = document.getElementById('playerVideo');
+            playerVid.pause();
+            playerVid.removeAttribute('src');
+            pm.classList.remove('show');
+            pm.setAttribute('aria-hidden', 'true');
+            currentPlayingIndex = null;
+        }
+        function playerTogglePlay() {
+            const pv = document.getElementById('playerVideo');
+            if (!pv) return;
+            if (pv.paused) pv.play(); else pv.pause();
+        }
+        function playerSeek(sec) {
+            const pv = document.getElementById('playerVideo');
+            if (!pv) return;
+            pv.currentTime = Math.max(0, pv.currentTime + sec);
+        }
+
+        /* --------------------------- Admin: setup, login, add, list, delete --------------------------- */
+        async function setupDefaultAdmin() {
+            if (localStorage.getItem(ADMIN_HASH)) {
+                alert('Admin artıq təyin edilib');
+                return;
+            }
+            // demo default: code=999999, pass=admin123 -> sən dəyiş
+            const code = '999999', pass = 'admin123';
+            const hash = await sha256Hex(code + '::' + pass + '::' + APP_SECRET);
+            localStorage.setItem(ADMIN_HASH, hash);
+            alert('Default admin təyin edildi. (DEMO) — admin üçün etibarlı kod və parolu dəyişdirin.');
+        }
+
+        async function adminLogin() {
+            const code = document.getElementById('adminCode').value.trim();
+            const pass = document.getElementById('adminPass').value || '';
+            if (!code || !pass) { alert('Admin kodu və şifrə daxil edin'); return; }
+            const stored = localStorage.getItem(ADMIN_HASH);
+            if (!stored) { alert('Admin təyin edilməyib. "Default admin təyin et" düyməsi ilə qura bilərsiniz.'); return; }
+            const hash = await sha256Hex(code + '::' + pass + '::' + APP_SECRET);
+            if (hash !== stored) { alert('Admin kodu və ya şifrə yanlışdır'); return; }
+            document.getElementById('adminArea').style.display = 'flex';
+            loadAdminList();
+            alert('Admin panelə daxil oldunuz');
+        }
+
+        async function adminAddVideo() {
+            const url = document.getElementById('videoUrl').value.trim();
+            const title = document.getElementById('videoTitle').value.trim() || 'Untitled';
+            const thumb = document.getElementById('videoThumb').value.trim() || '';
+            if (!url) { alert('Video URL daxil edin'); return; }
+            const videos = await loadEncrypted(STORAGE_VIDEOS) || [];
+            videos.push({ url, title, thumb, quality: detectQualityFromUrl(url), created: Date.now() });
+            await saveEncrypted(STORAGE_VIDEOS, videos);
+            document.getElementById('videoUrl').value = '';
+            document.getElementById('videoTitle').value = '';
+            document.getElementById('videoThumb').value = '';
+            loadAdminList();
+            renderVideos();
+            alert('Video əlavə edildi (şifrəli şəkildə saxlanıldı).');
+        }
+
+        async function loadAdminList() {
+            const list = document.getElementById('adminList');
+            list.innerHTML = '';
+            const videos = await loadEncrypted(STORAGE_VIDEOS) || [];
+            if (videos.length === 0) { list.innerHTML = '<div class="muted">Heç bir video yoxdur</div>'; return; }
+            videos.forEach((v, i) => {
+                const row = document.createElement('div');
+                row.style.display = 'flex';
+                row.style.alignItems = 'center';
+                row.style.justifyContent = 'space-between';
+                row.style.marginBottom = '8px';
+                row.innerHTML = `<div style="max-width:70%;"><strong>${escapeHtml(v.title)}</strong><div class="muted" style="font-size:12px;">${escapeHtml(v.url)}</div></div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn" onclick="adminPreview(${i})">Önizlə</button>
+            <button class="btn danger" onclick="adminDelete(${i})">Sil</button>
+          </div>`;
+                list.appendChild(row);
+            });
+        }
+
+        async function adminPreview(i) {
+            showPage('videosPage');
+            // renderVideos sonra aç
+            setTimeout(() => { openPlayer(i); }, 300);
+        }
+
+        async function adminDelete(i) {
+            if (!confirm('Həqiqətən bu videonu silmək istəyirsiniz?')) return;
+            const videos = await loadEncrypted(STORAGE_VIDEOS) || [];
+            videos.splice(i, 1);
+            await saveEncrypted(STORAGE_VIDEOS, videos);
+            loadAdminList();
+            renderVideos();
+        }
+
+        /* --------------------------- Export/Import encrypted backup --------------------------- */
+        async function exportData() {
+            const users = localStorage.getItem(STORAGE_USERS);
+            const videos = localStorage.getItem(STORAGE_VIDEOS);
+            const blob = new Blob([`# Quantum Video Export\n\nusers=${users}\nvideos=${videos}`], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = 'quantum_export.qv'; a.click(); URL.revokeObjectURL(url);
+        }
+
+        function importPrompt() {
+            const input = document.createElement('input'); input.type = 'file'; input.accept = '.qv,.txt';
+            input.onchange = async (e) => {
+                const f = e.target.files[0];
+                if (!f) return;
+                const txt = await f.text();
+                // very naive parser for demo export format:
+                const usersMatch = txt.match(/users=(.+?)\n/);
+                const videosMatch = txt.match(/videos=(.+?)\n/);
+                // Try to find JSON substrings:
+                const usersJson = txt.split('\n').find(l => l.startsWith('users='));
+                const videosJson = txt.split('\n').find(l => l.startsWith('videos='));
+                try {
+                    if (usersJson) localStorage.setItem(STORAGE_USERS, usersJson.replace(/^users=/, ''));
+                    if (videosJson) localStorage.setItem(STORAGE_VIDEOS, videosJson.replace(/^videos=/, ''));
+                    alert('Import tamamlandı (demo).');
+                    renderVideos();
+                    loadAdminList();
+                } catch (e) {
+                    alert('Importda səhv — fayl formatı uyğun deyil.');
+                }
+            };
+            input.click();
+        }
+
+        /* --------------------------- Utility --------------------------- */
+        function detectQualityFromUrl(url) {
+            const q = url.match(/(\d{3,4}p)/i);
+            return q ? q[0] : 'Auto';
+        }
+
+        /* --------------------------- Devtools / rightclick protection (light) --------------------------- */
+        document.addEventListener('contextmenu', e => { if (e.ctrlKey) return; e.preventDefault(); });
+
+        let devtoolsOpen = false;
+        (function detectDevTools() {
+            const threshold = 160;
+            setInterval(() => {
+                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+                if (widthThreshold || heightThreshold) {
+                    if (!devtoolsOpen) {
+                        devtoolsOpen = true;
+                        document.getElementById('inspectShield').style.display = 'block';
+                    }
+                } else {
+                    if (devtoolsOpen) {
+                        devtoolsOpen = false;
+                        document.getElementById('inspectShield').style.display = 'none';
+                    }
+                }
+            }, 800);
+        })();
+
+        /* --------------------------- Small wiring --------------------------- */
+        document.getElementById('btnHome').addEventListener('click', () => showPage('homePage'));
+        document.getElementById('btnVideos').addEventListener('click', () => showPage('videosPage'));
+        document.getElementById('btnLogin').addEventListener('click', () => showPage('loginPage'));
+        document.getElementById('btnAdmin').addEventListener('click', () => showPage('adminPage'));
+
+        (async function showSessionIfAny() {
+            const u = await currentUser();
+            if (u) { setSession(u); document.getElementById('btnLogout').style.display = 'inline-block'; }
+        })();
+
+        (async function prefillDemo() {
+            const videos = await loadEncrypted(STORAGE_VIDEOS);
+            if (!videos || videos.length === 0) {
+                const demo = [
+                    { url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', title: 'Demo: Flower (HD)', thumb: '', quality: '720p' },
+                    { url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/bee.mp4', title: 'Demo: Bee (HD)', thumb: '', quality: '720p' }
+                ];
+                await saveEncrypted(STORAGE_VIDEOS, demo);
+            }
+            renderVideos();
+        })();
+
+        /* light anti-source deterrent (demo-only) */
+        (function antiSource() {
+            const orig = Function.prototype.toString;
+            Function.prototype.toString = function () { try { const s = orig.call(this); if (s.length > 400) return '// quantum-protected'; return s; } catch (e) { return '// protected'; } };
+        })();
+
+        /* keyboard: Esc to close player */
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (document.getElementById('playerModal').classList.contains('show')) closePlayer();
+                if (document.getElementById('ageModal').classList.contains('show')) closeAgeModal(false);
+            }
+        });
+
+        /* accessibility: focus outlines on keyboard navigation */
+        document.addEventListener('keyup', (e) => { if (e.key === 'Tab') document.body.classList.add('user-tab'); });
+                    return dec.decode(plainBuf);
+            } catch (e) {
+                        console.warn("Decrypt error:", e);
+                        return null;
+                    }
+        }
+
+                    /* --------------------------- Storage helpers --------------------------- */
+                    async function loadEncrypted(keyName, secret) {
+                        const raw = localStorage.getItem(keyName);
+                        if (!raw) return null;
+                        return JSON.parse(await aesDecrypt(raw, secret) || "null");
+                    }
+
+                    async function saveEncrypted(keyName, value, secret) {
+                        const encData = await aesEncrypt(JSON.stringify(value), secret);
+                        localStorage.setItem(keyName, encData);
+                    }
+
+                    /* --------------------------- User session --------------------------- */
+                    async function getUsers() {
+                        return await loadEncrypted(STORAGE_USERS, APP_SECRET) || [];
+                    }
+
+                    async function saveUsers(u) {
+                        await saveEncrypted(STORAGE_USERS, u, APP_SECRET);
+                    }
+
+                    async function getVideos() {
+                        return await loadEncrypted(STORAGE_VIDEOS, APP_SECRET) || [];
+                    }
+
+                    async function saveVideos(v) {
+                        await saveEncrypted(STORAGE_VIDEOS, v, APP_SECRET);
+                    }
+
+                    function getSession() {
+                        return JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+                    }
+
+                    function setSession(data) {
+                        localStorage.setItem(SESSION_KEY, JSON.stringify(data));
+                    }
+
+                    function clearSession() {
+                        localStorage.removeItem(SESSION_KEY);
+                    }
+
+                    /* --------------------------- Navigation --------------------------- */
+                    function showPage(id) {
+                        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+                        document.getElementById(id).classList.add("active");
+
+                        if (id === "videosPage") renderVideos();
+                    }
+
+                    document.getElementById("btnHome").onclick = () => showPage("homePage");
+                    document.getElementById("btnVideos").onclick = () => showPage("videosPage");
+                    document.getElementById("btnLogin").onclick = () => showPage("loginPage");
+                    document.getElementById("btnAdmin").onclick = () => showPage("adminPage");
+
+                    /* --------------------------- Register --------------------------- */
+                    async function register() {
+                        const email = regEmail.value.trim();
+                        const pass = regPass.value.trim();
+                        const name = regName.value.trim() || "İstifadəçi";
+
+                        if (!email || !pass) {
+                            alert("Email və şifrə boş ola bilməz.");
+                            return;
+                        }
+
+                        const users = await getUsers();
+                        if (users.find(u => u.email === email)) {
+                            alert("Bu email artıq mövcuddur.");
+                            return;
+                        }
+
+                        users.push({ email, pass, name });
+                        await saveUsers(users);
+                        alert("Qeydiyyat uğurlu!");
+                        showPage("loginPage");
+                    }
+
+                    /* --------------------------- Login --------------------------- */
+                    async function login() {
+                        const email = inputEmail.value.trim();
+                        const pass = inputPass.value.trim();
+
+                        const users = await getUsers();
+                        const u = users.find(x => x.email === email && x.pass === pass);
+
+                        if (!u) {
+                            alert("Email və ya şifrə yanlışdır.");
+                            return;
+                        }
+
+                        setSession({ email: u.email, name: u.name });
+                        document.getElementById("btnLogout").style.display = "inline-block";
+
+                        showPage("videosPage");
+                    }
+
+                    function logout() {
+                        clearSession();
+                        document.getElementById("btnLogout").style.display = "none";
+                        showPage("homePage");
+                    }
+
+                    /* --------------------------- Videos --------------------------- */
+                    async function renderVideos() {
+                        const grid = document.getElementById("videoGrid");
+                        grid.innerHTML = "";
+
+                        const videos = await getVideos();
+                        const session = getSession();
+
+                        if (!videos.length) {
+                            grid.innerHTML = "<p class='muted'>Hələ video yoxdur.</p>";
+                            return;
+                        }
+
+                        videos.forEach(v => {
+                            const box = document.createElement("div");
+                            box.className = "card";
+
+                            box.innerHTML = `
+                    <div class="video-thumb">
+                        <img src="${v.thumb || ''}" onerror="this.src='https://via.placeholder.com/400x250?text=Video';">
+                    </div>
+                    <div class="meta">
+                        <div class="title">${v.title}</div>
+                        <div class="small">${session ? "Tam versiya" : "Demo"}</div>
+                    </div>
+                `;
+
+                            box.onclick = () => openPlayer(v.url);
+                            grid.appendChild(box);
+                        });
+
+                        const badge = document.getElementById("userBadge");
+                        if (session) badge.textContent = session.name;
+                        else badge.textContent = "";
+                    }
+
+                    /* --------------------------- Player --------------------------- */
+                    function openPlayer(url) {
+                        playerVideo.src = url;
+                        document.getElementById("playerModal").classList.add("show");
+                        playerVideo.play();
+                    }
+
+                    function closePlayer() {
+                        playerVideo.pause();
+                        playerVideo.src = "";
+                        document.getElementById("playerModal").classList.remove("show");
+                    }
+
+                    function playerTogglePlay() {
+                        if (playerVideo.paused) playerVideo.play();
+                        else playerVideo.pause();
+                    }
+
+                    function playerSeek(sec) {
+                        playerVideo.currentTime += sec;
+                    }
+
+                    /* --------------------------- Admin --------------------------- */
+                    async function adminLogin() {
+                        const code = adminCode.value.trim();
+                        const pass = adminPass.value.trim();
+
+                        const stored = localStorage.getItem(ADMIN_HASH);
+                        if (!stored) {
+                            alert("Admin hələ qurulmayıb!");
+                            return;
+                        }
+
+                        const hash = btoa(code + "::" + pass);
+                        if (hash === stored) {
+                            document.getElementById("adminArea").style.display = "block";
+                            renderAdminList();
+                        } else {
+                            alert("Admin kodu və ya şifrəsi səhvdir!");
+                        }
+                    }
+
+                    function setupDefaultAdmin() {
+                        const hash = btoa("admin::1234");
+                        localStorage.setItem(ADMIN_HASH, hash);
+                        alert("Default admin hazırdır: admin / 1234");
+                    }
+
+                    async function adminAddVideo() {
+                        const url = videoUrl.value.trim();
+                        const title = videoTitle.value.trim();
+                        const thumb = videoThumb.value.trim();
+
+                        if (!url || !title) {
+                            alert("URL və başlıq tələb olunur.");
+                            return;
+                        }
+
+                        const videos = await getVideos();
+                        videos.push({ url, title, thumb });
+                        await saveVideos(videos);
+
+                        renderAdminList();
+                        renderVideos();
+                        alert("Video əlavə edildi!");
+                    }
+
+                    async function renderAdminList() {
+                        const list = document.getElementById("adminList");
+                        list.innerHTML = "";
+
+                        const videos = await getVideos();
+                        videos.forEach((v, i) => {
+                            const div = document.createElement("div");
+                            div.style.marginBottom = "8px";
+                            div.innerHTML = `
+                    <div>${i + 1}. ${v.title}</div>
+                    <button class="btn danger" onclick="adminDelVideo(${i})">Sil</button>
+                `;
+                            list.appendChild(div);
+                        });
+                    }
+
+                    async function adminDelVideo(i) {
+                        const videos = await getVideos();
+                        videos.splice(i, 1);
+                        await saveVideos(videos);
+                        renderAdminList();
+                        renderVideos();
+                    }
+
+                    /* --------------------------- Export / Import --------------------------- */
+                    async function exportData() {
+                        const users = await loadEncrypted(STORAGE_USERS, APP_SECRET);
+                        const videos = await loadEncrypted(STORAGE_VIDEOS, APP_SECRET);
+
+                        const data = {
+                            users,
+                            videos,
+                            date: new Date().toISOString()
+                        };
+
+                        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+                        const a = document.createElement("a");
+                        a.href = URL.createObjectURL(blob);
+                        a.download = "quantum_backup.json";
+                        a.click();
+                    }
+
+                    async function importPrompt() {
+                        const input = document.createElement("input");
+                        input.type = "file";
+                        input.accept = "application/json";
+                        input.onchange = async e => {
+                            const file = e.target.files[0];
+                            const text = await file.text();
+                            const json = JSON.parse(text);
+
+                            await saveEncrypted(STORAGE_USERS, json.users || [], APP_SECRET);
+                            await saveEncrypted(STORAGE_VIDEOS, json.videos || [], APP_SECRET);
+
+                            alert("Ehtiyat bərpa edildi!");
+                            renderVideos();
+                            renderAdminList();
+                        };
+                        input.click();
+                    
+
+    </script>
+</body>
+</html>
